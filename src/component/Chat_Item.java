@@ -60,7 +60,6 @@ public class Chat_Item extends javax.swing.JLayeredPane {
         chatImage.addImage(fileSender);
         layer.add(chatImage);
         add(layer);
-
     }
 
     public void setImage(boolean right, Model_Receive_Image dataImage) {

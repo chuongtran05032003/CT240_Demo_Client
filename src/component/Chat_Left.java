@@ -45,6 +45,7 @@ public class Chat_Left extends javax.swing.JPanel {
         txt.setFile(data);
     }
     
+    
     public void setEmoji(Icon icon) {
         txt.hideText();
         txt.setEmoji(false, icon);

@@ -53,6 +53,7 @@ public class Main extends javax.swing.JFrame {
         PublicEvent.getInstance().addEventMain(new EventMain() {
             @Override
             public void initChat() {
+                Service.getInstance().getClient().emit("getUserMessages", Service.getInstance().getUser().getUserID());
                 Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getUserID());
                 home.initChat();
                 home.setVisible(true);

@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.Model_History_Message;
 
 
 public class PublicEvent {
 
-
-    
 
     private int userID;
     private static PublicEvent instance;
@@ -24,6 +23,7 @@ public class PublicEvent {
     private EventLogin eventLogin;
     private EventMenuLeft eventMenuLeft;
     private EventMenuChat eventMenuChat;
+    private List<Model_History_Message> mess;
 
     public static PublicEvent getInstance() {
         if (instance == null) {
@@ -34,6 +34,7 @@ public class PublicEvent {
 
     private PublicEvent() {
         userEventChatReceives = new HashMap<>();
+        mess = new ArrayList<>();
     }
 
     
@@ -68,6 +69,8 @@ public class PublicEvent {
     public void addEventMenuChat(EventMenuChat event) {
         this.eventMenuChat = event;
     }
+    
+
 
     public EventMain getEventMain() {
         return eventMain;
@@ -104,5 +107,12 @@ public class PublicEvent {
     public int getUserID(){
         return this.userID;
     }
-
+    
+    public List<Model_History_Message> getMess() {
+        return mess;
+    }
+    
+    public void setMess(List<Model_History_Message> mess) {
+        this.mess = mess;
+    }
 }

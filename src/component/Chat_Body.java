@@ -10,12 +10,14 @@ import java.awt.Adjustable;
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
+import model.Model_History_Message;
 import model.Model_Receive_Message;
 import model.Model_Send_Message;
 import net.miginfocom.swing.MigLayout;
@@ -75,6 +77,40 @@ public class Chat_Body extends javax.swing.JPanel {
         revalidate();
     }
     
+    public void addItemLeft(Model_History_Message data) throws IOException {
+        if (data.getMessageType() == 1) {
+            Chat_Left item = new Chat_Left();
+            item.setUserProfile(data.getName());
+            item.setText(data.getMess());
+            body.add(item, "wrap, w 100::80%");
+            itemLeft.add(item);
+        } else if (data.getMessageType() == 2) {
+            Chat_Left item = new Chat_Left();
+            item.setUserProfile(data.getName());
+            item.setEmoji(Emoji.getInstance().getImoji(Integer.parseInt(data.getMess())).getIcon());
+            body.add(item, "wrap, w 100::80%");
+            itemLeft.add(item);
+        }
+        repaint();
+        revalidate();
+    }
+    
+    public void addItemRight(Model_History_Message data) {
+        if (data.getMessageType() == 1) {
+            Chat_Right item = new Chat_Right();
+            item.setText(data.getMess());
+            body.add(item, "wrap, al right, w 100::80%");
+            itemRight.add(item);
+        } else if (data.getMessageType() == 2) {
+            Chat_Right item = new Chat_Right();
+            item.setEmoji(Emoji.getInstance().getImoji(Integer.valueOf(data.getMess())).getIcon());
+            body.add(item, "wrap, al right, w 100::80%");
+            itemRight.add(item);
+        }
+        repaint();
+        revalidate();
+        scrollToBottom();
+    }
     
     public void addItemRight(Model_Send_Message data) {
         if (data.getMessageType() == MessageType.TEXT) {
@@ -82,11 +118,15 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setText(data.getText());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), data.getMessageType().getValue(), data.getText());
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         } else if (data.getMessageType() == MessageType.EMOJI) {
             Chat_Right item = new Chat_Right();
             item.setEmoji(Emoji.getInstance().getImoji(Integer.valueOf(data.getText())).getIcon());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), data.getMessageType().getValue(), data.getText());
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         } else if (data.getMessageType() == MessageType.IMAGE) {
             Chat_Right item = new Chat_Right();
             item.setText("");

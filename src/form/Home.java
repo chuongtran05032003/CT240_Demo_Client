@@ -7,8 +7,12 @@ import event.EventMenuChat;
 import event.EventMenuLeft;
 import event.PublicEvent;
 import java.awt.Component;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Model_History_Message;
 import model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
 
@@ -65,11 +69,16 @@ public class Home extends javax.swing.JLayeredPane {
                     for (Model_User_Account user : users) {
                         chatls.get(numberUser).getChat().setUser(user);
                         chatls.get(numberUser).setUserID(user.getUserID());
-                        chatls.get(numberUser).getChat().startReceiveThread();
+                    try {
+                        chatls.get(numberUser).getChat().startReceive();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                         numberUser++;
                     }
             }
         });
+
     }
 
     public void setUser(Model_User_Account user) {
@@ -80,7 +89,7 @@ public class Home extends javax.swing.JLayeredPane {
         int index = findChatIndex(user.getUserID());
         this.add(menuList);
         Chat chat = getChatls().get(index).getChat();
-        chat.startSendThread();
+        chat.startSend();
         this.add(chat);
     }
 

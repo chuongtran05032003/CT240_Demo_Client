@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Model_File_Receiver;
 import model.Model_File_Sender;
+import model.Model_History_Message;
 
 import model.Model_Receive_Message;
 import model.Model_Send_Message;
@@ -92,6 +93,21 @@ public class Service {
                 }
             });
             
+            client.on("getMessages", new Emitter.Listener() {
+                @Override
+                public void call(Object... os) {
+                    List<Model_History_Message> mess = new ArrayList<>();
+                    for (Object o : os) {
+                        Model_History_Message m = new Model_History_Message(o);
+                        mess.add(m);
+                    }
+                    PublicEvent.getInstance().setMess(mess);
+                    for(Model_History_Message m : PublicEvent.getInstance().getMess()){
+                        System.out.println(m.getMess());
+                    }
+                }
+            });
+            
             client.open();
         } catch (URISyntaxException e) {
             error(e);
@@ -117,7 +133,6 @@ public class Service {
             //  Start send new file when old file sending finish
             fileSender.get(0).initSend();
         }
-        System.out.println("sendfinish");
     }
     
     public void fileReceiveFinish(Model_File_Receiver data) throws IOException {
@@ -125,7 +140,6 @@ public class Service {
         if (!fileReceiver.isEmpty()) {
             fileReceiver.get(0).initReceive();
         }
-        System.out.println("receivefinish");
     }
 
     public void addFileReceiver(int fileID, EventFileReceiver event) throws IOException {

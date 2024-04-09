@@ -29,6 +29,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.IOException;
+import model.Model_History_Message;
 
 /**
  *
