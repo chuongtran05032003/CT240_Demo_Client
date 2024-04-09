@@ -134,6 +134,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
     }
     
     private void send(Model_Send_Message data) {
+        System.out.println("send"+data.getFromUserID()+"_"+data.getToUserID());
         Service.getInstance().getClient().emit("send_to_user", data.toJsonObject());
     }
 

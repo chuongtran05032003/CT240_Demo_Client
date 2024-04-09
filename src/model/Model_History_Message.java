@@ -15,6 +15,20 @@ import org.json.JSONObject;
 public class Model_History_Message {
 
     /**
+     * @return the side
+     */
+    public int getSide() {
+        return side;
+    }
+
+    /**
+     * @param side the side to set
+     */
+    public void setSide(int side) {
+        this.side = side;
+    }
+
+    /**
      * @return the messageType
      */
     public int getMessageType() {
@@ -84,12 +98,13 @@ public class Model_History_Message {
         this.mess = mess;
     }
     
-    public Model_History_Message(int fromUserID, int toUserID, String userName,int messageType,String text) {
+    public Model_History_Message(int fromUserID, int toUserID, String userName,int messageType,String text, int side) {
         this.messageType = messageType;
         this.fromUserID = fromUserID;
         this.name = userName;
         this.toUserID = toUserID;
         this.mess = text;
+        this.side = side;
     }
 
     public Model_History_Message() {
@@ -100,6 +115,7 @@ public class Model_History_Message {
     private int toUserID;
     private String name;
     private String mess;
+    private int side;
 
     public JSONObject toJsonObject() {
         try {
@@ -110,6 +126,7 @@ public class Model_History_Message {
             json.put("toUserID", getToUserID());
             json.put("messageType", getMessageType());
             json.put("mess", getMess());
+            json.put("side", getSide());
             return json;
         } catch (JSONException e) {
             return null;
@@ -125,6 +142,7 @@ public class Model_History_Message {
             toUserID = obj.getInt("toUserID");
             messageType = obj.getInt("messageType");
             mess = obj.getString("mess");
+            side = obj.getInt("side");
 
         } catch (JSONException e) {
             System.err.println(e);

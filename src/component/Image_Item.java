@@ -40,6 +40,11 @@ public class Image_Item extends javax.swing.JLayeredPane {
         initComponents();
     }
 
+    public void setImage(Icon image) {
+        progress.setVisible(false);
+        getPic().setImage(image);
+    }
+    
     public void setImage(Icon image, Model_File_Sender fileSender) {
         fileSender.addEvent(new EventFileSender() {
             @Override

@@ -30,6 +30,21 @@ public class Chat_File extends javax.swing.JPanel {
         setOpaque(false);
     }
 
+    public void setFile(String fileName){
+        progress.setVisible(false);
+        String fn = "client_data/" + fileName;
+        file = new File(fn);
+        if (fileName.contains("_")) {
+            lbFileName.setText(file.getName().substring(file.getName().indexOf('_') + 1));
+        } else {
+            lbFileName.setText(file.getName());
+        }
+        
+        setSize(file.length());
+        addEvent(file);
+        setFile(file);
+    }
+    
     public void setFile(Model_Receive_Message fileReceiver) throws IOException {
         try {
             Service.getInstance().addFileReceiver(fileReceiver.getDataImage().getFileID(), new EventFileReceiver() {
@@ -50,6 +65,7 @@ public class Chat_File extends javax.swing.JPanel {
                     setSize(file.length());
                     addEvent(file);
                     setFile(file);
+                    
                 }
             });
         } catch (IOException e) {

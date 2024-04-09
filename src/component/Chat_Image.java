@@ -40,6 +40,16 @@ public class Chat_Image extends javax.swing.JLayeredPane {
         addEvent(pic, new File(fileSender.getFile().getAbsolutePath()));
         add(pic, "wrap");
     }
+    
+    public void addImage(String imageName) {
+        String fn = "client_data/" + imageName;
+        Icon image = new ImageIcon(fn);
+        Image_Item pic = new Image_Item();
+        pic.setPreferredSize(getAutoSize(image, 200, 200));
+        pic.setImage(image);
+        addEvent(pic, new File(fn));
+        add(pic, "wrap");
+    }
 
     public void addImage(Model_Receive_Image dataImage) {
         Image_Item pic = new Image_Item();

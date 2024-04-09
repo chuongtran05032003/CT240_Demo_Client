@@ -29,6 +29,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import model.Model_History_Message;
 
 /**
@@ -95,6 +97,9 @@ public class Panel_More extends javax.swing.JPanel {
                     File files[] = ch.getSelectedFiles();
                     try {
                         for (File file : files) {
+                            String destinationFileName = "client_data/" + file.getName();
+                            File destinationFile = new File(destinationFileName);
+                            Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             Model_Send_Message message = new Model_Send_Message(MessageType.IMAGE, Service.getInstance().getUser().getUserID(),Service.getInstance().getUser().getUserName(), user.getUserID(), "");
                             Service.getInstance().addFile(file, message);
                             PublicEvent.getInstance().getEventChatSend().sendMessage(message);
@@ -137,6 +142,10 @@ public class Panel_More extends javax.swing.JPanel {
                     File files[] = ch.getSelectedFiles();
                     try {
                         for (File file : files) {
+                            String destinationFileName = "client_data/" + file.getName();
+                            File destinationFile = new File(destinationFileName);
+                            Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            
                             Model_Send_Message message = new Model_Send_Message(MessageType.FILE, Service.getInstance().getUser().getUserID(), Service.getInstance().getUser().getUserName(), user.getUserID(), "");
                             Service.getInstance().addFile(file, message);
                             PublicEvent.getInstance().getEventChatSend().sendMessage(message);

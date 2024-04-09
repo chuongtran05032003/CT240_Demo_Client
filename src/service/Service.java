@@ -90,6 +90,7 @@ public class Service {
                 public void call(Object... os) {
                     Model_Receive_Message message = new Model_Receive_Message(os[0]);
                     PublicEvent.getInstance().getEventChatReceive(message.getFromUserID()).receiveMessage(message);
+                    System.out.println("receive_ms"+message.getFromUserID()+"_"+message.getUserID());
                 }
             });
             

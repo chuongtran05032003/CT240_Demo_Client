@@ -79,7 +79,7 @@ public class Chat extends javax.swing.JPanel {
             publicEvent.addEventChatReceive(user.getUserID(), new EventChatReceive() {
                 @Override
                 public void receiveMessage(Model_Receive_Message data) {
-                    if (data.getUserID() != PublicEvent.getInstance().getUserID()) {
+                    if (data.getUserID() == PublicEvent.getInstance().getUserID()) {
                         try {
                             chatBody.addItemLeft(data);
                         } catch (IOException ex) {
@@ -92,10 +92,12 @@ public class Chat extends javax.swing.JPanel {
         List<Model_History_Message> list = PublicEvent.getInstance().getMess();
         if(list.size() != 0){
             for(Model_History_Message mess : list){
-                if(mess.getToUserID() == user.getUserID() && mess.getFromUserID() == Service.getInstance().getUser().getUserID()){
+                if(mess.getToUserID() == user.getUserID() && mess.getFromUserID() == Service.getInstance().getUser().getUserID() && mess.getSide() == 1){
                     chatBody.addItemRight(mess);
-                }else if(mess.getToUserID() == Service.getInstance().getUser().getUserID() && mess.getFromUserID() == user.getUserID()){
+                    System.out.println("addRight: "+mess.getMess());
+                }else if(mess.getToUserID() == Service.getInstance().getUser().getUserID() && mess.getFromUserID() == user.getUserID() && mess.getSide() == 0){
                     chatBody.addItemLeft(mess);
+                    System.out.println("addLeft: "+mess.getMess());
                 }
             }
         }

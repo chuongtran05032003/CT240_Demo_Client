@@ -53,18 +53,24 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setText(data.getText());
             body.add(item, "wrap, w 100::80%");
             itemLeft.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getUserID(), data.getUserName(), 1, data.getText(), 0);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         } else if (data.getMessageType() == MessageType.EMOJI) {
             Chat_Left item = new Chat_Left();
             item.setUserProfile(data.getUserName());
             item.setEmoji(Emoji.getInstance().getImoji(Integer.parseInt(data.getText())).getIcon());
             body.add(item, "wrap, w 100::80%");
             itemLeft.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getUserID(), data.getUserName(), 2, data.getText(), 0);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }else if (data.getMessageType() == MessageType.IMAGE) {
             Chat_Left item = new Chat_Left();
             item.setUserProfile(data.getUserName());
             item.setText("");
             item.setImage(data.getDataImage());
             body.add(item, "wrap, w 100::80%");
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getUserID(), data.getUserName(), 3, data.getDataImage().getFileID() +"_"+ data.getDataImage().getFileName(), 0);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }else if(data.getMessageType() == MessageType.FILE) {
             Chat_Left item = new Chat_Left();
             item.setUserProfile(data.getUserName());
@@ -72,6 +78,8 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setFile(data);
             body.add(item, "wrap, w 100::80%");
             itemLeft.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getUserID(), data.getUserName(), 4, data.getDataImage().getFileID()+"_"+data.getDataImage().getFileName(), 0);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }
         repaint();
         revalidate();
@@ -88,6 +96,19 @@ public class Chat_Body extends javax.swing.JPanel {
             Chat_Left item = new Chat_Left();
             item.setUserProfile(data.getName());
             item.setEmoji(Emoji.getInstance().getImoji(Integer.parseInt(data.getMess())).getIcon());
+            body.add(item, "wrap, w 100::80%");
+            itemLeft.add(item);
+        }else if (data.getMessageType() == 3) {
+            Chat_Left item = new Chat_Left();
+            item.setUserProfile(data.getName());
+            item.setText("");
+            item.setImage(data.getMess());
+            body.add(item, "wrap, w 100::80%");
+        }else if(data.getMessageType() == 4) {
+            Chat_Left item = new Chat_Left();
+            item.setUserProfile(data.getName());
+            item.setText("");
+            item.setFile(data.getMess());
             body.add(item, "wrap, w 100::80%");
             itemLeft.add(item);
         }
@@ -107,6 +128,19 @@ public class Chat_Body extends javax.swing.JPanel {
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
         }
+        else if (data.getMessageType() == 3) {
+            Chat_Right item = new Chat_Right();
+            item.setText("");
+            item.setImage(data.getMess());
+            body.add(item, "wrap, al right, w 100::80%");
+            itemRight.add(item);
+        }else if(data.getMessageType() == 4){
+            Chat_Right item = new Chat_Right();
+            item.setText("");
+            item.setFile(data.getMess());
+            body.add(item, "wrap, al right, w 100::80%");
+            itemRight.add(item);
+        }
         repaint();
         revalidate();
         scrollToBottom();
@@ -118,14 +152,14 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setText(data.getText());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
-            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), data.getMessageType().getValue(), data.getText());
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), 1, data.getText(), 1);
             Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         } else if (data.getMessageType() == MessageType.EMOJI) {
             Chat_Right item = new Chat_Right();
             item.setEmoji(Emoji.getInstance().getImoji(Integer.valueOf(data.getText())).getIcon());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
-            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), data.getMessageType().getValue(), data.getText());
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), 2, data.getText(), 1);
             Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         } else if (data.getMessageType() == MessageType.IMAGE) {
             Chat_Right item = new Chat_Right();
@@ -133,12 +167,16 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setImage(data.getFile());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), 3, data.getFile().getFileName(), 1);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }else if(data.getMessageType() == MessageType.FILE){
             Chat_Right item = new Chat_Right();
             item.setText("");
             item.setFile(data.getFile());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), 4, data.getFile().getFileName(), 1);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }
         repaint();
         revalidate();
