@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package form;
 
 import component.Item_People;
@@ -18,10 +15,7 @@ import net.miginfocom.swing.MigLayout;
 import service.Service;
 import swing.ScrollBar;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Menu_List extends javax.swing.JPanel {
 
 
@@ -188,7 +182,7 @@ public class Menu_List extends javax.swing.JPanel {
 
         sp.setViewportView(menu_List);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(72, 202, 228));
 
         jLayeredPane1.setLayout(new javax.swing.BoxLayout(jLayeredPane1, javax.swing.BoxLayout.Y_AXIS));
 
@@ -269,7 +263,7 @@ public class Menu_List extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         username.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        username.setForeground(new java.awt.Color(102, 102, 102));
+        username.setForeground(new java.awt.Color(72, 202, 228));
         username.setText("USER NAME");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -358,8 +352,16 @@ public class Menu_List extends javax.swing.JPanel {
         refreshMenuList();
         getUserAccount().removeAll(getUserAccount());
         PublicEvent.getInstance().getEventMain().logout();
+        PublicEvent.getInstance().removeEventChatReceive();
+        PublicEvent.getInstance().removeMess();
         Service.getInstance().disconnectFromServer();
         Service.getInstance().startServer();
+        if(!btn_mess.isSelected()){
+            btn_mess.setSelected(true);
+            btn_group.setSelected(false);
+            btn_contact.setSelected(false);
+            showMess();
+        }
     }//GEN-LAST:event_logoutActionPerformed
 
 

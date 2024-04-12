@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import event.PublicEvent;
@@ -11,10 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import model.Model_User_Account;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Item_People extends javax.swing.JPanel {
 
 

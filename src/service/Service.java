@@ -25,10 +25,6 @@ import model.Model_Send_Message;
 import model.Model_User_Account;
 
 
-/**
- *
- * @author Chuong Tran
- */
 public class Service {
     private static Service instance;
     private Socket client;
@@ -90,7 +86,6 @@ public class Service {
                 public void call(Object... os) {
                     Model_Receive_Message message = new Model_Receive_Message(os[0]);
                     PublicEvent.getInstance().getEventChatReceive(message.getFromUserID()).receiveMessage(message);
-                    System.out.println("receive_ms"+message.getFromUserID()+"_"+message.getUserID());
                 }
             });
             
@@ -103,9 +98,6 @@ public class Service {
                         mess.add(m);
                     }
                     PublicEvent.getInstance().setMess(mess);
-                    for(Model_History_Message m : PublicEvent.getInstance().getMess()){
-                        System.out.println(m.getMess());
-                    }
                 }
             });
             
@@ -119,11 +111,9 @@ public class Service {
         Model_File_Sender data = new Model_File_Sender(file, client, message);
         message.setFile(data);
         fileSender.add(data);
-        System.out.println(data.getFile().getName()+"-"+data.getFileName());
         //  For send file one by one
         if (fileSender.size() == 1) {
             data.initSend();
-            System.out.println("finish initSend");
         }
         return data;
     }

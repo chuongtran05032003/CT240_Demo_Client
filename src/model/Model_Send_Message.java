@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import app.MessageType;
@@ -10,9 +7,6 @@ import org.json.JSONObject;
 
 public class Model_Send_Message {
 
-    /**
-     * @return the userName
-     */
     public String getUserName() {
         return userName;
     }

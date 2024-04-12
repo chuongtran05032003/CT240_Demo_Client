@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 
@@ -10,16 +7,10 @@ import org.json.JSONObject;
 
 public class Model_Receive_Image {
 
-    /**
-     * @return the fileName
-     */
     public String getFileName() {
         return fileName;
     }
 
-    /**
-     * @param fileName the fileName to set
-     */
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }

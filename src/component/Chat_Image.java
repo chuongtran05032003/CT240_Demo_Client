@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import event.PublicEvent;
@@ -10,7 +7,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -18,13 +14,8 @@ import javax.swing.SwingUtilities;
 import model.Model_File_Sender;
 import model.Model_Receive_Image;
 import net.miginfocom.swing.MigLayout;
-import swing.PictureBox;
-import swing.blurHash.BlurHash;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Chat_Image extends javax.swing.JLayeredPane {
 
     public Chat_Image(boolean right) {

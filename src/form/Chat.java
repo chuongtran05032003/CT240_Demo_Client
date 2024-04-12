@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package form;
 
 import component.Chat_Body;
@@ -24,10 +21,6 @@ import model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
 import service.Service;
 
-/**
- *
- * @author Chuong Tran
- */
 public class Chat extends javax.swing.JPanel {
 
     public Model_User_Account getUser() {
@@ -94,14 +87,11 @@ public class Chat extends javax.swing.JPanel {
             for(Model_History_Message mess : list){
                 if(mess.getToUserID() == user.getUserID() && mess.getFromUserID() == Service.getInstance().getUser().getUserID() && mess.getSide() == 1){
                     chatBody.addItemRight(mess);
-                    System.out.println("addRight: "+mess.getMess());
                 }else if(mess.getToUserID() == Service.getInstance().getUser().getUserID() && mess.getFromUserID() == user.getUserID() && mess.getSide() == 0){
                     chatBody.addItemLeft(mess);
-                    System.out.println("addLeft: "+mess.getMess());
                 }
             }
         }
-        System.out.println(PublicEvent.getInstance().getEventChatReceive(user.getUserID()) + "-" + user.getUserID());
     }
 
     public void updateUser(Model_User_Account user) {

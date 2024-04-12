@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import org.json.JSONException;
@@ -9,9 +6,6 @@ import org.json.JSONObject;
 
 public class Model_Package_Sender {
 
-    /**
-     * @return the fileName
-     */
     public String getFileName() {
         return fileName;
     }

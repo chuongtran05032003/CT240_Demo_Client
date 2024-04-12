@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import event.EventFileReceiver;
@@ -16,22 +13,12 @@ import model.Model_Receive_Image;
 import service.Service;
 import swing.blurHash.BlurHash;
 
-/**
- *
- * @author Chuong Tran
- */
 public class Image_Item extends javax.swing.JLayeredPane {
 
-    /**
-     * @return the pic
-     */
     public swing.PictureBox getPic() {
         return pic;
     }
 
-    /**
-     * @param pic the pic to set
-     */
     public void setPic(swing.PictureBox pic) {
         this.pic = pic;
     }

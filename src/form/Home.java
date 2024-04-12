@@ -2,17 +2,13 @@
 package form;
 
 import component.ChatLs;
-import component.Item_People;
 import event.EventMenuChat;
-import event.EventMenuLeft;
 import event.PublicEvent;
-import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Model_History_Message;
 import model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
 
@@ -54,7 +50,6 @@ public class Home extends javax.swing.JLayeredPane {
         this.add(menuList);
         this.add(chat);
         chat.setVisible(false);
-        
     }
 
     public void initChat(){
@@ -62,10 +57,11 @@ public class Home extends javax.swing.JLayeredPane {
         PublicEvent.getInstance().addEventMenuChat(new EventMenuChat() {
             @Override
             public void listUser(List<Model_User_Account> users) {
-                for (Model_User_Account user : users) {
-                    Chat chat = new Chat();
-                    chatls.add(new ChatLs(chat, 0));
-                }
+                if(chatls.isEmpty()){
+                    for (Model_User_Account user : users) {
+                        Chat chat = new Chat();
+                        chatls.add(new ChatLs(chat, 0));
+                    }
                     for (Model_User_Account user : users) {
                         chatls.get(numberUser).getChat().setUser(user);
                         chatls.get(numberUser).setUserID(user.getUserID());
@@ -76,11 +72,38 @@ public class Home extends javax.swing.JLayeredPane {
                     }
                         numberUser++;
                     }
+                }else{
+                    chatls.clear();
+                    for (Model_User_Account user : users) {
+                        Chat chat = new Chat();
+                        chatls.add(new ChatLs(chat, 0));
+                    }
+                    for (Model_User_Account user : users) {
+                        chatls.get(numberUser).getChat().setUser(user);
+                        chatls.get(numberUser).setUserID(user.getUserID());
+                    try {
+                        chatls.get(numberUser).getChat().startReceive();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                        numberUser++;
+                    }
+                }
+                
             }
         });
 
     }
 
+    public void setDeafule(){
+        this.removeAll();
+        this.repaint();
+        this.revalidate();
+        this.add(menuList);
+        this.add(chat);
+        chat.setVisible(false);
+    }
+    
     public void setUser(Model_User_Account user) {
         this.removeAll();
         this.repaint();

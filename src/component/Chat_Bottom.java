@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import app.MessageType;
@@ -18,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import model.Model_History_Message;
 import model.Model_Send_Message;
 import model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
@@ -26,10 +22,7 @@ import service.Service;
 import swing.JIMSendTextPanel;
 import swing.ScrollBar;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Chat_Bottom extends javax.swing.JPanel {
 
     public Model_User_Account getUser() {
@@ -134,7 +127,6 @@ public class Chat_Bottom extends javax.swing.JPanel {
     }
     
     private void send(Model_Send_Message data) {
-        System.out.println("send"+data.getFromUserID()+"_"+data.getToUserID());
         Service.getInstance().getClient().emit("send_to_user", data.toJsonObject());
     }
 

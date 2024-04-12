@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package form;
 
 import event.EventLogin;
@@ -16,15 +13,10 @@ import model.Model_User_Account;
 import service.Service;
 
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Login extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Login
-     */
+
     public Login() {
         initComponents();
         init();
@@ -61,6 +53,8 @@ public class Login extends javax.swing.JPanel {
                             if (ms.isAction()) {
                                 Service.getInstance().setUser(new Model_User_Account(os[2]));
                                 message.callMessage(ms);
+                            }else{
+                                message.callMessage(ms);
                             }
                         }
                     }
@@ -92,7 +86,7 @@ public class Login extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(72, 202, 228));
         jPanel1.setPreferredSize(new java.awt.Dimension(250, 300));
 
         javax.swing.GroupLayout slideLayout = new javax.swing.GroupLayout(slide);
@@ -123,7 +117,7 @@ public class Login extends javax.swing.JPanel {
                 .addGap(1, 1, 1))
         );
 
-        pictureBox2.setImage(new javax.swing.ImageIcon(getClass().getResource("/icon/login.png"))); // NOI18N
+        pictureBox2.setImage(new javax.swing.ImageIcon(getClass().getResource("/icon/login1.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

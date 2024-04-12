@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import event.EventFileReceiver;
@@ -21,25 +18,41 @@ import model.Model_File_Sender;
 import model.Model_Receive_Message;
 import service.Service;
 
-
- 
 public class Chat_File extends javax.swing.JPanel {
+    
     private File file;
+    
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+    
     public Chat_File() {
         initComponents();
         setOpaque(false);
     }
 
-    public void setFile(String fileName){
+    public void setFileL(String fileName){
         progress.setVisible(false);
         String fn = "client_data/" + fileName;
         file = new File(fn);
         if (fileName.contains("_")) {
-            lbFileName.setText(file.getName().substring(file.getName().indexOf('_') + 1));
+            lbFileName.setText(file.getName().substring(file.getName().indexOf("_") + 1));
         } else {
             lbFileName.setText(file.getName());
         }
         
+        setSize(file.length());
+        addEvent(file);
+        setFile(file);
+    }
+    
+    public void setFileR(String fileName){
+        progress.setVisible(false);
+        lbFileName.setText(file.getName());
         setSize(file.length());
         addEvent(file);
         setFile(file);
@@ -61,7 +74,7 @@ public class Chat_File extends javax.swing.JPanel {
                 @Override
                 public void onFinish(File file) {
                     progress.setVisible(false);
-                    lbFileName.setText(file.getName().substring(file.getName().indexOf('_') + 1));
+                    lbFileName.setText(file.getName().substring(file.getName().indexOf("_") + 1));
                     setSize(file.length());
                     addEvent(file);
                     setFile(file);
@@ -261,17 +274,6 @@ public class Chat_File extends javax.swing.JPanel {
     private swing.Progress progress;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the file
-     */
-    public File getFile() {
-        return file;
-    }
 
-    /**
-     * @param file the file to set
-     */
-    public void setFile(File file) {
-        this.file = file;
-    }
+    
 }

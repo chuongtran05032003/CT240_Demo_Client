@@ -5,24 +5,17 @@ import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import event.EventImageView;
 import event.EventMain;
 import event.PublicEvent;
-import io.socket.client.Ack;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import model.Model_Message;
 import model.Model_User_Account;
 import service.Service;
 import swing.ComponentResizer;
@@ -55,6 +48,7 @@ public class Main extends javax.swing.JFrame {
             public void initChat() {
                 Service.getInstance().getClient().emit("getUserMessages", Service.getInstance().getUser().getUserID());
                 Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getUserID());
+                home.setDeafule();
                 home.initChat();
                 home.setVisible(true);
                 
@@ -137,7 +131,7 @@ public class Main extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(204, 204, 204));
 
-        title.setBackground(new java.awt.Color(204, 204, 204));
+        title.setBackground(new java.awt.Color(72, 202, 228));
         title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 titleMouseDragged(evt);
@@ -168,7 +162,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         minimize.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        minimize.setForeground(new java.awt.Color(102, 102, 102));
+        minimize.setForeground(new java.awt.Color(255, 255, 255));
         minimize.setText("--");
         minimize.setToolTipText("");
         minimize.setBorder(null);

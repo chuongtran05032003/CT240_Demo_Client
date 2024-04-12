@@ -1,31 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package form;
 
-import com.formdev.flatlaf.json.Json;
+
 import event.EventMessage;
 import event.PublicEvent;
-import static io.socket.client.IO.socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Model_Login;
 import model.Model_Message;
-import model.Model_Register;
-import org.json.JSONException;
-import org.json.JSONObject;
-import service.Service;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class P_Login extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SignIn
-     */
+
     public P_Login() {
         initComponents();
     }
@@ -52,7 +37,7 @@ public class P_Login extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(72, 202, 228));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
 
@@ -62,7 +47,7 @@ public class P_Login extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Password");
 
-        btn_login.setBackground(new java.awt.Color(232, 242, 255));
+        btn_login.setBackground(new java.awt.Color(173, 232, 244));
         btn_login.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_login.setText("Login");
         btn_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -73,7 +58,7 @@ public class P_Login extends javax.swing.JPanel {
         });
 
         btn_register.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_register.setForeground(new java.awt.Color(0, 51, 255));
+        btn_register.setForeground(new java.awt.Color(72, 202, 228));
         btn_register.setText("Register");
         btn_register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +124,6 @@ public class P_Login extends javax.swing.JPanel {
                 public void callMessage(Model_Message message) {
                     if (!message.isAction()) {
                         lbError.setText(message.getMessage());
-                        System.out.println("error");
                     } else {
                         PublicEvent.getInstance().getEventMain().initChat();
                         username.setText("");

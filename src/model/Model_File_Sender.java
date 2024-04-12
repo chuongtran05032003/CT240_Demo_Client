@@ -14,9 +14,7 @@ import service.Service;
 
 public class Model_File_Sender {
 
-    /**
-     * @return the fileName
-     */
+
     public String getFileName() {
         return fileName;
     }
@@ -148,7 +146,6 @@ public class Model_File_Sender {
         Model_Package_Sender data = new Model_Package_Sender();
         data.setFileID(fileID);
         data.setFileName(fileName);
-        System.out.println("sendingfile :"+data.getFileName());
         byte[] bytes = readFile();
         if (bytes != null) {
             data.setData(bytes);
@@ -198,7 +195,6 @@ public class Model_File_Sender {
 
     private String getExtensions(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."), fileName.length());
-        //return fileName;
     }
 
     public void addEvent(EventFileSender event) {

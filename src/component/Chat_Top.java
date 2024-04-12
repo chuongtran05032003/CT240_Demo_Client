@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import java.awt.Color;
 import model.Model_User_Account;
 
-/**
- *
- * @author Chuong Tran
- */
 public class Chat_Top extends javax.swing.JPanel {
 
     public Model_User_Account getUser() {

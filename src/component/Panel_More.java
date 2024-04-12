@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import app.MessageType;
@@ -30,13 +27,9 @@ import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import model.Model_History_Message;
 
-/**
- *
- * @author Chuong Tran
- */
 public class Panel_More extends javax.swing.JPanel {
 
     public Model_User_Account getUser() {
@@ -69,7 +62,6 @@ public class Panel_More extends javax.swing.JPanel {
         ch.setBorder(null);
         ch.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         ch.setVerticalScrollBar(new ScrollBar());
-        //  test color
         add(ch, "w 100%, h 100%");
     }
     
@@ -99,7 +91,8 @@ public class Panel_More extends javax.swing.JPanel {
                         for (File file : files) {
                             String destinationFileName = "client_data/" + file.getName();
                             File destinationFile = new File(destinationFileName);
-                            Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            Files.copy(file.toPath(), Paths.get(destinationFileName), StandardCopyOption.REPLACE_EXISTING);
+                            
                             Model_Send_Message message = new Model_Send_Message(MessageType.IMAGE, Service.getInstance().getUser().getUserID(),Service.getInstance().getUser().getUserName(), user.getUserID(), "");
                             Service.getInstance().addFile(file, message);
                             PublicEvent.getInstance().getEventChatSend().sendMessage(message);
@@ -144,9 +137,10 @@ public class Panel_More extends javax.swing.JPanel {
                         for (File file : files) {
                             String destinationFileName = "client_data/" + file.getName();
                             File destinationFile = new File(destinationFileName);
-                            Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            Files.copy(file.toPath(), Paths.get(destinationFileName), StandardCopyOption.REPLACE_EXISTING);
                             
                             Model_Send_Message message = new Model_Send_Message(MessageType.FILE, Service.getInstance().getUser().getUserID(), Service.getInstance().getUser().getUserName(), user.getUserID(), "");
+                            
                             Service.getInstance().addFile(file, message);
                             PublicEvent.getInstance().getEventChatSend().sendMessage(message);
                         }
@@ -217,6 +211,7 @@ public class Panel_More extends javax.swing.JPanel {
     
     private void sendMessage(Model_Send_Message data) {
         Service.getInstance().getClient().emit("send_to_user", data.toJsonObject());
+        System.out.println("sendMessage");
     }
     
     private void clearSelected() {

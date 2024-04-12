@@ -87,6 +87,10 @@ public class PublicEvent {
     public EventChatReceive getEventChatReceive(int userId) {
         return userEventChatReceives.get(userId);
     }
+    
+    public void removeEventChatReceive() {
+        this.userEventChatReceives.clear();
+    }
 
     public EventLogin getEventLogin() {
         return eventLogin;
@@ -114,5 +118,9 @@ public class PublicEvent {
     
     public void setMess(List<Model_History_Message> mess) {
         this.mess = mess;
+    }
+    
+    public void removeMess() {
+        this.mess.clear();
     }
 }

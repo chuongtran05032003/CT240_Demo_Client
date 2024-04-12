@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import javax.swing.Icon;
 import model.Model_File_Sender;
 
-/**
- *
- * @author Chuong Tran
- */
+
 public class Chat_Right extends javax.swing.JPanel {
 
 
@@ -40,7 +34,7 @@ public class Chat_Right extends javax.swing.JPanel {
     }
 
     public void setFile(String fileSender) {
-        txt.setFile(fileSender);
+        txt.setFile(true, fileSender);
     }
     
     public void setEmoji(Icon icon) {
@@ -55,7 +49,7 @@ public class Chat_Right extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        txt.setBackground(new java.awt.Color(204, 255, 204));
+        txt.setBackground(new java.awt.Color(72, 202, 228));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

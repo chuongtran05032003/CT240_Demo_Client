@@ -33,7 +33,7 @@ public class P_Register extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(72, 202, 228));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Register");
 
@@ -43,7 +43,7 @@ public class P_Register extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Password");
 
-        btn_register.setBackground(new java.awt.Color(232, 242, 255));
+        btn_register.setBackground(new java.awt.Color(173, 232, 244));
         btn_register.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_register.setText("Register");
         btn_register.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -54,7 +54,7 @@ public class P_Register extends javax.swing.JPanel {
         });
 
         btn_backLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_backLogin.setForeground(new java.awt.Color(0, 51, 255));
+        btn_backLogin.setForeground(new java.awt.Color(72, 202, 228));
         btn_backLogin.setText(" Back Login");
         btn_backLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,8 +132,10 @@ public class P_Register extends javax.swing.JPanel {
                 public void callMessage(Model_Message message) {
                     if (!message.isAction()) {
                         lbError.setText(message.getMessage());
+                        System.out.println(message.getMessage());
                     } else {
                         PublicEvent.getInstance().getEventMain().initChat();
+                        System.out.println(message.getMessage());
                         username.setText("");
                         pass.setText("");
                         cf_pass.setText("");

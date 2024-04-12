@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import event.EventFileReceiver;
@@ -115,7 +112,7 @@ public class Model_File_Receiver {
     }
 
     public void startSaveFile() throws IOException, JSONException {
-        Model_Request_File data = new Model_Request_File(fileID, fileName, accFile.length());
+        Model_Request_File data = new Model_Request_File(fileID, fileName);
         socket.emit("request_file", data.toJsonObject(), new Ack() {
             @Override
             public void call(Object... os) {
@@ -124,7 +121,11 @@ public class Model_File_Receiver {
                         byte[] b = (byte[]) os[0];
                         writeFile(b);
                         event.onReceiving(getPercentage());
-                        startSaveFile();
+                        close();
+                        String fn = fileID +"_"+fileName;
+                        event.onFinish(new File(PATH_FILE + fn));
+                        //  remove list
+                        Service.getInstance().fileReceiveFinish(Model_File_Receiver.this);
                     } else {
                         close();
                         String fn = fileID +"_"+fileName;
@@ -132,19 +133,17 @@ public class Model_File_Receiver {
                         //  remove list
                         Service.getInstance().fileReceiveFinish(Model_File_Receiver.this);
                     }
-                } catch (IOException | JSONException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
 
-    private synchronized long writeFile(byte[] data) throws IOException {
-        accFile.seek(accFile.length());
+    private synchronized void writeFile(byte[] data) throws IOException {
+        accFile.seek(0);
         accFile.write(data);
-        return accFile.length();
     }
-
     public double getPercentage() throws IOException {
         double percentage;
         long filePointer = accFile.getFilePointer();

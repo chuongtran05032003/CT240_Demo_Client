@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package component;
 
 import java.awt.Color;
@@ -16,14 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
-import model.Model_File_Receiver;
 import model.Model_File_Sender;
 import model.Model_Receive_Image;
 import model.Model_Receive_Message;
 
-
 public class Chat_Item extends javax.swing.JLayeredPane {
-
 
     public Chat_Item() {
         initComponents();
@@ -92,12 +86,17 @@ public class Chat_Item extends javax.swing.JLayeredPane {
         add(layer);
     }
     
-    public void setFile(String fileSender) {
+    public void setFile(Boolean right, String fileSender) {
         JLayeredPane layer = new JLayeredPane();
         layer.setLayout(new FlowLayout(FlowLayout.LEFT));
         layer.setBorder(new EmptyBorder(0, 5, 0, 5));
         Chat_File chatFile = new Chat_File();
-        chatFile.setFile(fileSender);
+        if(right){
+            chatFile.setFileR(fileSender);
+        }else{
+            chatFile.setFileL(fileSender);
+        }
+        
         layer.add(chatFile);
         add(layer);
     }
@@ -118,7 +117,6 @@ public class Chat_Item extends javax.swing.JLayeredPane {
         layer.setBorder(new EmptyBorder(0, 5, 0, 5));
         layer.add(new JLabel(icon));
         add(layer);
-        //setBackground(null);
     }
     
     public void hideText() {

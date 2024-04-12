@@ -9,16 +9,10 @@ import org.json.JSONObject;
 
 public class Model_Request_File {
 
-    /**
-     * @return the fileName
-     */
     public String getFileName() {
         return fileName;
     }
 
-    /**
-     * @param fileName the fileName to set
-     */
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -31,18 +25,9 @@ public class Model_Request_File {
         this.fileID = fileID;
     }
 
-    public long getCurrentLength() {
-        return currentLength;
-    }
-
-    public void setCurrentLength(long currentLength) {
-        this.currentLength = currentLength;
-    }
-
-    public Model_Request_File(int fileID, String fileName, long currentLength) {
+    public Model_Request_File(int fileID, String fileName) {
         this.fileID = fileID;
         this.fileName = fileName;
-        this.currentLength = currentLength;
     }
 
     public Model_Request_File() {
@@ -50,14 +35,12 @@ public class Model_Request_File {
 
     private int fileID;
     private String fileName;
-    private long currentLength;
 
     public JSONObject toJsonObject() {
         try {
             JSONObject json = new JSONObject();
             json.put("fileID", fileID);
             json.put("fileName", fileName);
-            json.put("currentLength", currentLength);
             return json;
         } catch (JSONException e) {
             e.printStackTrace();
