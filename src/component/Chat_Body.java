@@ -166,6 +166,8 @@ public class Chat_Body extends javax.swing.JPanel {
             item.setFile(data.getFile());
             body.add(item, "wrap, al right, w 100::80%");
             itemRight.add(item);
+            Model_History_Message mess = new Model_History_Message(data.getFromUserID(), data.getToUserID(), data.getUserName(), 4, data.getFile().getFileName(), 1);
+            Service.getInstance().getClient().emit("saveMessage", mess.toJsonObject());
         }
         repaint();
         revalidate();
