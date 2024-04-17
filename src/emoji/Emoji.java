@@ -22,17 +22,9 @@ public class Emoji {
     private Emoji() {
     }
 
-    public List<Model_Emoji> getStyle1() {
+    public List<Model_Emoji> getEmojis() {
         List<Model_Emoji> list = new ArrayList<>();
         for (int i = 1; i <= 20; i++) {
-            list.add(new Model_Emoji(i, new ImageIcon(getClass().getResource("/emoji/" + i + ".png"))));
-        }
-        return list;
-    }
-
-    public List<Model_Emoji> getStyle2() {
-        List<Model_Emoji> list = new ArrayList<>();
-        for (int i = 21; i <= 40; i++) {
             list.add(new Model_Emoji(i, new ImageIcon(getClass().getResource("/emoji/" + i + ".png"))));
         }
         return list;

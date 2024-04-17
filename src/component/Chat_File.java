@@ -52,7 +52,14 @@ public class Chat_File extends javax.swing.JPanel {
     
     public void setFileR(String fileName){
         progress.setVisible(false);
-        lbFileName.setText(file.getName());
+        String fn = "client_data/" + fileName;
+        file = new File(fn);
+        if (fileName.contains("_")) {
+            lbFileName.setText(file.getName().substring(file.getName().indexOf("_") + 1));
+        } else {
+            lbFileName.setText(file.getName());
+        }
+        
         setSize(file.length());
         addEvent(file);
         setFile(file);

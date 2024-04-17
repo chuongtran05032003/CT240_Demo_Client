@@ -53,8 +53,7 @@ public class Panel_More extends javax.swing.JPanel {
         panelHeader.setLayout(new BoxLayout(panelHeader, BoxLayout.LINE_AXIS));
         panelHeader.add(getButtonImage());
         panelHeader.add(getButtonFile());
-        panelHeader.add(getEmojiStyle1());
-        panelHeader.add(getEmojiStyle2());
+        panelHeader.add(getEmoji());
         add(panelHeader, "w 100%, h 30!, wrap");
         panelDetail = new JPanel();
         panelDetail.setLayout(new WrapLayout(WrapLayout.LEFT));    //  use warp layout
@@ -154,35 +153,16 @@ public class Panel_More extends javax.swing.JPanel {
         return cmd;
     }
 
-    private JButton getEmojiStyle1() {
+    private JButton getEmoji() {
         OptionButton cmd = new OptionButton();
-        cmd.setIcon(Emoji.getInstance().getImoji(1).toSize(25, 25).getIcon());
+        cmd.setIcon(Emoji.getInstance().getImoji(0).toSize(25, 25).getIcon());
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 clearSelected();
                 cmd.setSelected(true);
                 panelDetail.removeAll();
-                for (Model_Emoji d : Emoji.getInstance().getStyle1()) {
-                    panelDetail.add(getButton(d));
-                }
-                panelDetail.repaint();
-                panelDetail.revalidate();
-            }
-        });
-        return cmd;
-    }
-
-    private JButton getEmojiStyle2() {
-        OptionButton cmd = new OptionButton();
-        cmd.setIcon(Emoji.getInstance().getImoji(21).toSize(25, 25).getIcon());
-        cmd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                clearSelected();
-                cmd.setSelected(true);
-                panelDetail.removeAll();
-                for (Model_Emoji d : Emoji.getInstance().getStyle2()) {
+                for (Model_Emoji d : Emoji.getInstance().getEmojis()) {
                     panelDetail.add(getButton(d));
                 }
                 panelDetail.repaint();

@@ -26,18 +26,19 @@ import swing.ScrollBar;
 public class Chat_Bottom extends javax.swing.JPanel {
 
     public Model_User_Account getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(Model_User_Account user) {
         this.user = new Model_User_Account(user);
         panelMore.setUser(new Model_User_Account(user));
+        txt.setHintText("Write message to " + user.getUserName());
     }
 
     private Model_User_Account user;
     private MigLayout mig;
     private Panel_More panelMore;
-    
+    private JIMSendTextPanel txt;
     public Chat_Bottom() {
         initComponents();
         init();
@@ -48,7 +49,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
         setLayout(mig);
         JScrollPane scroll = new JScrollPane();
         scroll.setBorder(null);
-        JIMSendTextPanel txt = new JIMSendTextPanel();
+        txt = new JIMSendTextPanel();
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ke) {
@@ -60,7 +61,8 @@ public class Chat_Bottom extends javax.swing.JPanel {
             }
         });
         txt.setBorder(new EmptyBorder(5, 5, 5, 5));
-        txt.setHintText("Write Message Here ...");
+        txt.setHintText("Write message to...");
+        
         scroll.setViewportView(txt);
         ScrollBar sb = new ScrollBar();
         sb.setBackground(new Color(229, 229, 229));
